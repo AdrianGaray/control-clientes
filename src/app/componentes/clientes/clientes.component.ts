@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Cliente } from '../../modelo/cliente.modelo';
 import { ClienteService } from '../../servicios/cliente.service';
 import { CommonModule } from '@angular/common';
@@ -22,6 +22,8 @@ export class ClientesComponent {
     saldo: undefined
   };
 
+  @ViewChild('botonCerrar') botonCerrar!: ElementRef;
+
   constructor(private clienteServicio: ClienteService) { }
 
   // ngOnInit: Cuando el componente se inicializa, se llama al servicio ClienteServicio para obtener la lista de clientes desde Firestore. 
@@ -41,9 +43,14 @@ export class ClientesComponent {
     const { value, valid } = clienteForm;
     if (valid) {
       // Agregamos la logica para guardar el cliente
-
+      this.clienteServicio.agregarCliente(value);
       // Limpiamos el formulario
       clienteForm.resetForm();
+      this.cerrarModal();
     }
+  }
+
+  private cerrarModal() {
+    this.botonCerrar.nativeElement.click();
   }
 }

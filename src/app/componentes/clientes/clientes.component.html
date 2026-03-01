@@ -1,17 +1,19 @@
 <!-- Botones -->
-<section id="actions" class="py-4 mb-4">
+ <section id="actions" class="py-4 mb-4">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="#" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#agregarClienteModal">
+                <a href="#" class="btn btn-primary w-100"
+                    data-bs-toggle="modal"
+                    data-bs-target="#agregarClienteModal">
                     <i class="bi bi-plus-circle"></i> Agregar Cliente
                 </a>
             </div>
         </div>
     </div>
-</section>
+ </section>
 
-<!-- Listado Clientes -->
+ <!-- Listado Clientes -->
 <section id="clientes">
     <div class="container">
         <div class="row">
@@ -30,17 +32,18 @@
                         </thead>
                         <tbody>
                             <!-- Iterar sobre la lista de clientes -->
-                            @for(cliente of clientes; track cliente){
-                            <tr>
-                                <td>{{cliente.nombre}} {{cliente.apellido}}</td>
-                                <td>{{cliente.saldo | currency: 'MNX':'$'}}</td>
-                                <td>
-                                    <a routerLink="/cliente/editar/{{cliente.id}}" class="btn btn-secondary">
-                                        <i class="bi bi-pencil-square"></i> Editar
-                                    </a>
-                                </td>
-                            </tr>
-                            }
+                             @for(cliente of clientes; track cliente){
+                                <tr>
+                                    <td>{{cliente.nombre}} {{cliente.apellido}}</td>
+                                    <td>{{cliente.saldo | currency: 'MNX':'$'}}</td>
+                                    <td>
+                                        <a routerLink="/cliente/editar/{{cliente.id}}"
+                                            class="btn btn-secondary">
+                                            <i class="bi bi-pencil-square"></i> Editar
+                                        </a>
+                                    </td>
+                                </tr>
+                             }
                         </tbody>
                     </table>
                 </div>
@@ -71,84 +74,87 @@
 </section>
 
 <!-- Modal para Agregar Cliente -->
-<div class="modal fade" id="agregarClienteModal" tabindex="-1">
+ <div class="modal fade" id="agregarClienteModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <!-- Encabezado del modal -->
-            <div class="modal-header bg-info text-white">
+             <div class="modal-header bg-info text-white">
                 <h5 class="modal-title">Agregar Cliente</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                    #botonCerrar>
                 </button>
-            </div>
-            <!-- Formulario para agregar el cliente -->
+             </div>
+             <!-- Formulario para agregar el cliente -->
             <form #clienteForm="ngForm" (ngSubmit)="agregar(clienteForm)">
                 <div class="modal-body">
                     <!-- Campo nombre -->
-                    <div class="d-flex align-items-center mb-3">
+                     <div class="d-flex align-items-center mb-3">
                         <label for="nombre" class="form-label me-3" style="min-width: 100px">
                             Nombre
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" id="nombre" name="nombre" class="form-control" required minlength="2"
-                                [(ngModel)]="cliente.nombre" #nombre="ngModel" />
+                            <input type="text" id="nombre" name="nombre" class="form-control" 
+                            required minlength="2" [(ngModel)]="cliente.nombre" #nombre="ngModel" />
                             @if(nombre.invalid && nombre.touched){
-                            <div class="text-danger">
-                                Nombre es requerido y debe tener al menos 2 caracteres
-                            </div>
+                                <div class="text-danger">
+                                    Nombre es requerido y debe tener al menos 2 caracteres
+                                </div>
                             }
                         </div>
-                    </div>
-                    <!-- Campo apellido -->
-                    <div class="d-flex align-items-center mb-3">
+                     </div>
+                     <!-- Campo apellido -->
+                     <div class="d-flex align-items-center mb-3">
                         <label for="apellido" class="form-label me-3" style="min-width: 100px">
                             Apellido
                         </label>
                         <div class="col-sm-9">
-                            <input type="text" id="apellido" name="apellido" class="form-control" required minlength="2"
-                                [(ngModel)]="cliente.apellido" #apellido="ngModel" />
+                            <input type="text" id="apellido" name="apellido" class="form-control" required
+                                minlength="2" [(ngModel)]="cliente.apellido" #apellido="ngModel"/>
                             @if(apellido.invalid && apellido.touched){
-                            <div class="text-danger">
-                                Apellido es requerido y debe tener al menos 2 caracteres.
-                            </div>
+                                <div class="text-danger">
+                                    Apellido es requerido y debe tener al menos 2 caracteres.
+                                </div>
                             }
                         </div>
-                    </div>
-                    <!-- Campo email -->
-                    <div class="d-flex align-items-center mb-3">
+                     </div> 
+                      <!-- Campo email -->
+                      <div class="d-flex align-items-center mb-3">
                         <label for="email" class="form-label me-3" style="min-width: 100px">
                             Email
                         </label>
                         <div class="col-sm-9">
                             <input type="email" id="email" name="email" class="form-control" required
-                                [(ngModel)]="cliente.email" #email="ngModel" />
+                            [(ngModel)]="cliente.email" #email="ngModel"/>
                             @if(email.invalid && email.touched){
-                            <div class="text-danger">
-                                Por favor ingresa un email válido
-                            </div>
+                                <div class="text-danger">
+                                    Por favor ingresa un email válido
+                                </div>
                             }
                         </div>
-                    </div>
-                    <!-- Campo saldo -->
-                    <div class="d-flex align-items-center mb-3">
+                     </div> 
+                      <!-- Campo saldo -->
+                      <div class="d-flex align-items-center mb-3">
                         <label for="saldo" class="form-label me-3" style="min-width: 100px">
                             Saldo
                         </label>
                         <div class="col-sm-9">
-                            <input type="number" id="saldo" name="saldo" class="form-control" required min="0.01"
-                                step="0.01" [(ngModel)]="cliente.saldo" #saldo="ngModel" />
+                            <input type="number" id="saldo" name="saldo" class="form-control" required
+                            min="0.01" step="0.01" [(ngModel)]="cliente.saldo" #saldo="ngModel"/>
                             @if(saldo.invalid && saldo.touched){
-                            <div class="text-danger">
-                                El saldo es requerido y debe ser un número positivo
-                            </div>
+                                <div class="text-danger">
+                                    El saldo es requerido y debe ser un número positivo
+                                </div>
                             }
                         </div>
-                    </div>
+                     </div> 
                 </div>
                 <!-- Footer del modal con el boton de guardar -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Guardar</button>
-                </div>
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="clienteForm.invalid"
+                    >Guardar</button>
+                </div> 
             </form>
         </div>
     </div>
-</div>
+ </div>
