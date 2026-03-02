@@ -51,12 +51,20 @@ export class EditarClienteComponent {
     }
   }
 
-  guardar(_t9: NgForm) {
-    throw new Error('Method not implemented.');
+  guardar(clienteForm: NgForm) {
+    const {value, valid} = clienteForm;
+    if(valid){
+      value.id = this.id;
+      this.clienteServicio.modificarCliente(value);
+      this.router.navigate(['/']);
+    }
   }
 
   eliminar() {
-    throw new Error('Method not implemented.');
+    if(confirm('¿Seguro que deseas eliminar el cliente?')){
+      this.clienteServicio.eliminarCliente(this.cliente);
+      this.router.navigate(['/']);
+    }
   }
 
 }
