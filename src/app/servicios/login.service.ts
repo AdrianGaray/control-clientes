@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Auth } from '@angular/fire/auth';
+import { Auth, authState } from '@angular/fire/auth';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root' // Mantiene el servicio como inyectable en toda la aplicación
@@ -21,5 +22,14 @@ export class LoginService {
         .catch(error => reject(error));
     });
   }
+
+  // Obtenemos el usuario logueado. Para saber si un usuario ya ha hecho login o no
+  getAuthState(): Observable<any>{
+    return authState(this.authService);
+  }
+
+  logout(){
+    this.authService.signOut();
+  }  
 
 }

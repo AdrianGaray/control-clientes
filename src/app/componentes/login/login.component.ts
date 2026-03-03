@@ -15,9 +15,19 @@ export class LoginComponent {
   // Las variables email y password almacenarán los datos ingresados en el formulario. 
   email: string | null = null;
   password: string | null = null;
-  mensaje: string | null = null; 
+  mensaje: string | null = null;
 
-  constructor(private router: Router, private loginService: LoginService ) { }
+  constructor(private router: Router, private loginService: LoginService) { }
+
+  // Evita que se muestre el formulario de login  
+  // si el usuario ya esta logueado 
+  ngOnInit() {
+    this.loginService.getAuthState().subscribe(usuario => {
+      if (usuario) {
+        this.router.navigate(['/']);
+      }
+    });
+  }
 
   // El método login() se encargará de la autenticación una vez que se implemente. 
   login() {
