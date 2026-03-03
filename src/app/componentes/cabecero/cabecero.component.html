@@ -3,13 +3,12 @@
         <!-- Enlace a la página principal -->
         <a [routerLink]="['/']" class="navbar-brand">Control Clientes</a>
         <!-- Botón para colapsar la barra de navegacion -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
-            data-bs-target="#navbarCollapse"
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <!-- Contenido de la barra de navegación -->
-         <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item px-2">
                     <a [routerLink]="['/']" class="nav-link">Inicio</a>
@@ -22,7 +21,12 @@
                         <i class="bi bi-person-circle"></i> Bienvenido
                     </a>
                 </li>
+                <li class="nav-item px-2">
+                    <a [routerLink]="['/login']" class="nav-link">
+                        <i class="bi bi-person"></i> Login
+                    </a>
+                </li>
             </ul>
-         </div>
+        </div>
     </div>
 </nav>
